@@ -17,6 +17,10 @@
 		80742B7F265D57F700209F99 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B7E265D57F700209F99 /* QuizViewController.swift */; };
 		80742B81265D700D00209F99 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B80265D700D00209F99 /* Question.swift */; };
 		80742B83265E038300209F99 /* QuizAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B82265E038300209F99 /* QuizAPI.swift */; };
+		80742B89265E6BFA00209F99 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B88265E6BFA00209F99 /* CountdownTimerView.swift */; };
+		80742B8C265E6E2F00209F99 /* UIView+AnchoredConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B8B265E6E2F00209F99 /* UIView+AnchoredConstraints.swift */; };
+		80742B8E265E6E6600209F99 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B8D265E6E6600209F99 /* VerticalStackView.swift */; };
+		80742B90265E6EC700209F99 /* UILabel+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B8F265E6EC700209F99 /* UILabel+Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		80742B7E265D57F700209F99 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		80742B80265D700D00209F99 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		80742B82265E038300209F99 /* QuizAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAPI.swift; sourceTree = "<group>"; };
+		80742B88265E6BFA00209F99 /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
+		80742B8B265E6E2F00209F99 /* UIView+AnchoredConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnchoredConstraints.swift"; sourceTree = "<group>"; };
+		80742B8D265E6E6600209F99 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		80742B8F265E6EC700209F99 /* UILabel+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Style.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +72,11 @@
 		80742B64265D298500209F99 /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
+				80742B8A265E6DCD00209F99 /* Extensions */,
+				80742B87265E6BB900209F99 /* Views */,
 				80742B7B265D29DC00209F99 /* Model */,
-				80742B79265D299B00209F99 /* User Interface */,
+				80742B79265D299B00209F99 /* Controller */,
+				80742B86265E6A5E00209F99 /* DummyAPI */,
 				80742B65265D298500209F99 /* AppDelegate.swift */,
 				80742B67265D298500209F99 /* SceneDelegate.swift */,
 				80742B69265D298500209F99 /* ViewController.swift */,
@@ -78,13 +89,12 @@
 			path = QuizApp;
 			sourceTree = "<group>";
 		};
-		80742B79265D299B00209F99 /* User Interface */ = {
+		80742B79265D299B00209F99 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				80742B7E265D57F700209F99 /* QuizViewController.swift */,
-				80742B82265E038300209F99 /* QuizAPI.swift */,
 			);
-			path = "User Interface";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		80742B7B265D29DC00209F99 /* Model */ = {
@@ -93,6 +103,32 @@
 				80742B80265D700D00209F99 /* Question.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80742B86265E6A5E00209F99 /* DummyAPI */ = {
+			isa = PBXGroup;
+			children = (
+				80742B82265E038300209F99 /* QuizAPI.swift */,
+			);
+			path = DummyAPI;
+			sourceTree = "<group>";
+		};
+		80742B87265E6BB900209F99 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80742B88265E6BFA00209F99 /* CountdownTimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		80742B8A265E6DCD00209F99 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				80742B8B265E6E2F00209F99 /* UIView+AnchoredConstraints.swift */,
+				80742B8D265E6E6600209F99 /* VerticalStackView.swift */,
+				80742B8F265E6EC700209F99 /* UILabel+Style.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,10 +203,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				80742B81265D700D00209F99 /* Question.swift in Sources */,
+				80742B8E265E6E6600209F99 /* VerticalStackView.swift in Sources */,
 				80742B83265E038300209F99 /* QuizAPI.swift in Sources */,
+				80742B89265E6BFA00209F99 /* CountdownTimerView.swift in Sources */,
 				80742B6A265D298500209F99 /* ViewController.swift in Sources */,
 				80742B66265D298500209F99 /* AppDelegate.swift in Sources */,
+				80742B90265E6EC700209F99 /* UILabel+Style.swift in Sources */,
 				80742B68265D298500209F99 /* SceneDelegate.swift in Sources */,
+				80742B8C265E6E2F00209F99 /* UIView+AnchoredConstraints.swift in Sources */,
 				80742B7F265D57F700209F99 /* QuizViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
