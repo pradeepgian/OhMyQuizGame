@@ -25,6 +25,10 @@ struct Option: Decodable {
     let label: String
     let score: Int
     let isCorrect: Int
+    
+    var isCorrectBool: Bool {
+        return isCorrect == 1
+    }
 }
 
 struct QuestionMetadata: Decodable {

@@ -131,7 +131,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
             self.anchoredConstraints?.height?.constant = startingFrame.height
             self.view.layoutIfNeeded() // starts animation
         }) { (_) in
-            
+            optionView.optionCellView.showResult()
         }
         
     }
