@@ -20,30 +20,28 @@ class CountdownTimerView: UIView {
         let label = UILabel()
         label.text = "0:00"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.textColor = .white
         return label
     }()
     
     private var timer = Timer()
-    private var seconds: TimeInterval = 60
-    private var timeLeft = 60
+    var timeLeft = 60   //default value
+    lazy private var seconds: TimeInterval = TimeInterval(timeLeft)
     private var endTime: Date?
     
-    init(timeLeft: Int) {
-        
-        self.seconds = TimeInterval(timeLeft)
-        self.timeLeft = timeLeft
-        
+    init(radius: CGFloat) {
+                
         super.init(frame: .zero)
-        
+        self.frame.size.height = radius * 2
         addSubview(timerLabel)
-        timerLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        timerLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
         timerLabel.center = center
         timerLabel.text = timeString(time: TimeInterval(seconds))
         
         let trackLayer = CAShapeLayer()
         
-        let circularPath = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: radius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
         trackLayer.path = circularPath.cgPath
         trackLayer.strokeColor = UIColor(red: 184/255, green: 166/255, blue: 240/255, alpha: 1).cgColor
         trackLayer.lineWidth = 2
