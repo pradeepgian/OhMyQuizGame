@@ -31,6 +31,27 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     lazy private var options = questions[questionIndex].data.options
     
+    private enum OptionImages: CaseIterable {
+        // don't change order
+        case optionA
+        case optionB
+        case optionC
+        case optionD
+
+        var image: UIImage? {
+            switch self {
+            case .optionA:
+                return #imageLiteral(resourceName: "OptionA").withRenderingMode(.alwaysOriginal)
+            case .optionB:
+                return #imageLiteral(resourceName: "OptionB").withRenderingMode(.alwaysOriginal)
+            case .optionC:
+                return #imageLiteral(resourceName: "OptionC").withRenderingMode(.alwaysOriginal)
+            case .optionD:
+                return #imageLiteral(resourceName: "OptionD").withRenderingMode(.alwaysOriginal)
+            }
+        }
+    }
+    
     fileprivate func setupUI() {
         collectionView.backgroundColor = .black
         collectionView.register(QuizHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: QuizHeaderCell.headerIdentifier)
@@ -45,7 +66,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 300)
+        return .init(width: view.frame.width, height: 325)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,8 +82,8 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionViewCell.identifier, for: indexPath) as! OptionViewCell
-//        cell.option = self.questions[questionIndex].data.options[indexPath.item]
         cell.option = options[indexPath.item]
+        cell.optionImageView.image = OptionImages.allCases[indexPath.item].image
         return cell
     }
     
@@ -79,3 +100,5 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
 }
+
+

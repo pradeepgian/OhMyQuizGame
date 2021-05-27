@@ -36,8 +36,7 @@ class QuizHeaderCell: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(stackView)
-        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 20, right: 20))
-        
+        stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
     }
     
     required init?(coder aDecoder: NSCoder) {
