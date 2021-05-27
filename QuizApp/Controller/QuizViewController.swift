@@ -52,7 +52,14 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
+    let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    
     fileprivate func setupUI() {
+        
+        view.addSubview(blurVisualEffectView)
+        blurVisualEffectView.fillSuperview()
+        blurVisualEffectView.alpha = 0
+        
         collectionView.backgroundColor = .black
         collectionView.register(QuizHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: QuizHeaderCell.headerIdentifier)
         collectionView.register(OptionViewCell.self, forCellWithReuseIdentifier: OptionViewCell.identifier)
@@ -91,6 +98,44 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         return 30
     }
     
+    var anchoredConstraints: AnchoredConstraints?
+    var startingFrame: CGRect?
+    var xAnchor: NSLayoutAnchor<AnyObject>?
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? OptionViewCell else { return }
+        // absolute coordindates of cell
+        guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+        
+        // get cell frame starting position
+        self.startingFrame = startingFrame
+        let optionView = ExpandedOptionView()
+        optionView.optionCellView.option = options[indexPath.item]
+        optionView.optionCellView.optionImageView.image = OptionImages.allCases[indexPath.item].image
+        
+        // add optionView as a subview
+        self.view.addSubview(optionView)
+        
+        //set the option view position same as cell view's position
+        self.anchoredConstraints = optionView.anchor(top: self.collectionView.topAnchor, leading: self.collectionView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: startingFrame.origin.y, left: startingFrame.origin.x, bottom: 0, right: 0), size: .init(width: startingFrame.width, height: startingFrame.height))
+        
+        self.view.layoutIfNeeded()
+        
+        //begin animation
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            self.blurVisualEffectView.alpha = 1
+            self.anchoredConstraints?.top?.constant = self.view.center.y - startingFrame.height/2
+            self.anchoredConstraints?.leading?.constant = self.view.center.x - startingFrame.width/2
+            self.anchoredConstraints?.width?.constant = startingFrame.width
+            self.anchoredConstraints?.height?.constant = startingFrame.height
+            self.view.layoutIfNeeded() // starts animation
+        }) { (_) in
+            
+        }
+        
+    }
+    
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -101,4 +146,16 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     
 }
 
-
+class ExpandedOptionView: UIView {
+    var optionCellView = OptionViewCell()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(optionCellView)
+        optionCellView.fillSuperview()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
