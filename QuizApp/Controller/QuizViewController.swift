@@ -60,19 +60,14 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     lazy var stackView = VerticalStackView(arrangedSubviews: [getReadyLabel, timerLabel], spacing: 40, alignment: .center)
     
     private var timer = Timer()
-    
-    private var seconds = 3
-    lazy private var secondsLeft = TimeInterval(seconds)
-    lazy private var waitTimeInSeconds = Date().addingTimeInterval(secondsLeft)
+    var seconds = 3
     
     var anchoredConstraintsForStackView: AnchoredConstraints?
-    var bottomAnchorForCollectionView: NSLayoutConstraint?
     
     fileprivate func setupUI() {
         view.addSubview(stackView)
         anchoredConstraintsForStackView = stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.topAnchor, trailing: view.trailingAnchor)
         stackView.alpha = 0
-        bottomAnchorForCollectionView = collectionView.bottomAnchor.constraint(equalTo: self.view.topAnchor)
         
         collectionView.backgroundColor = .black
         collectionView.register(QuizHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: QuizHeaderCell.headerIdentifier)
@@ -134,14 +129,13 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         self.optionViewConstraints = optionView.anchor(top: self.collectionView.topAnchor, leading: self.collectionView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: startingFrame.origin.y, left: startingFrame.origin.x, bottom: 0, right: 0), size: .init(width: startingFrame.width, height: startingFrame.height))
         
         self.view.layoutIfNeeded()
-        
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             self.optionViewConstraints?.top?.constant = self.view.center.y - startingFrame.height/2
             self.optionViewConstraints?.leading?.constant = self.view.center.x - startingFrame.width/2
             self.optionViewConstraints?.width?.constant = startingFrame.width
             self.optionViewConstraints?.height?.constant = startingFrame.height
-            self.bottomAnchorForCollectionView?.isActive = true
             self.collectionView.alpha = 0
+            self.collectionView.transform = self.collectionView.transform.translatedBy(x: 0, y: 500)
             self.view.layoutIfNeeded() // starts animation
         }) { (_) in
             optionView.optionCellView.showResult {
@@ -157,7 +151,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func startGetReadyTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.5,
+        timer = Timer.scheduledTimer(timeInterval: 1,
                                       target: self,
                                       selector: (#selector(updateTimer)),
                                       userInfo: nil,
@@ -165,21 +159,20 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc private func updateTimer() {
-        if secondsLeft < 0 {
-            timerLabel.text = "0"
+        if seconds < 1 {
             timer.invalidate()
+            timerLabel.text = "0"
             self.questionIndex += 1
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
                 self.stackView.alpha = 0
                 self.stackView.transform = .identity
                 self.collectionView.alpha = 1
                 self.collectionView.transform = .identity
-                self.view.layoutIfNeeded()
+                self.view.setNeedsLayout()
             })
         } else {
-            secondsLeft = waitTimeInSeconds.timeIntervalSinceNow
-            let seconds = Int(secondsLeft) % 60
-            timerLabel.text = "\(seconds)"
+            seconds -= 1
+            timerLabel.text = String(Int(seconds) % 60)
         }
     }
     
