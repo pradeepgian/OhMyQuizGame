@@ -23,6 +23,7 @@
 		80742B90265E6EC700209F99 /* UILabel+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B8F265E6EC700209F99 /* UILabel+Style.swift */; };
 		80742B92265E9F7000209F99 /* QuizHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B91265E9F7000209F99 /* QuizHeaderCell.swift */; };
 		80742B94265EB5BA00209F99 /* OptionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B93265EB5BA00209F99 /* OptionViewCell.swift */; };
+		80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B952661303800209F99 /* FullScreenOptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		80742B8F265E6EC700209F99 /* UILabel+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Style.swift"; sourceTree = "<group>"; };
 		80742B91265E9F7000209F99 /* QuizHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHeaderCell.swift; sourceTree = "<group>"; };
 		80742B93265EB5BA00209F99 /* OptionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewCell.swift; sourceTree = "<group>"; };
+		80742B952661303800209F99 /* FullScreenOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenOptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				80742B88265E6BFA00209F99 /* CountdownTimerView.swift */,
 				80742B91265E9F7000209F99 /* QuizHeaderCell.swift */,
 				80742B93265EB5BA00209F99 /* OptionViewCell.swift */,
+				80742B952661303800209F99 /* FullScreenOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				80742B8E265E6E6600209F99 /* VerticalStackView.swift in Sources */,
 				80742B83265E038300209F99 /* QuizAPI.swift in Sources */,
 				80742B89265E6BFA00209F99 /* CountdownTimerView.swift in Sources */,
+				80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */,
 				80742B6A265D298500209F99 /* ViewController.swift in Sources */,
 				80742B66265D298500209F99 /* AppDelegate.swift in Sources */,
 				80742B92265E9F7000209F99 /* QuizHeaderCell.swift in Sources */,

@@ -57,9 +57,17 @@ class OptionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16.0
     }
     
-    func showResult(){
+    func showResult(completion: @escaping () -> ()){
         isCorrectImageView.alpha = 1
-        UIView.transition(from: stackView, to: isCorrectImageView, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
+        
+        UIView.transition(from: stackView, to: isCorrectImageView, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews]) { (_) in
+            UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.transform = .init(scaleX: 0.01, y: 0.01)
+            }) { (_) in
+                self.transform = .init(scaleX: 0, y: 0)
+                completion()
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
