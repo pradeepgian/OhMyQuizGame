@@ -31,6 +31,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                 let question = questions[questionIndex]
                 options = question.data.options
                 totalMarks += question.data.marks
+                self.startGetReadyTimer()
                 collectionView.reloadData()
             } else {
                 let percent = (Float(scoredMarks) / Float(totalMarks)) * 100.0
@@ -165,18 +166,18 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }) { (_) in
             optionView.optionCellView.showResult {
                 UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-                    self.stackView.alpha = 1
                     self.anchoredConstraintsForStackView?.bottom?.constant = self.view.center.y + 50
                     self.view.layoutIfNeeded()
                 }) { (_) in
                     self.countdownTimeInSeconds = 3
-                    self.startGetReadyTimer()
+                    self.questionIndex += 1
                 }
             }
         }
     }
     
     func startGetReadyTimer() {
+        self.stackView.alpha = 1
         timer = Timer.scheduledTimer(timeInterval: 1,
                                       target: self,
                                       selector: (#selector(updateTimer)),
@@ -187,7 +188,6 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     @objc private func updateTimer() {
         if countdownTimeInSeconds < 1 {
             timer.invalidate()
-            self.questionIndex += 1
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
                 self.stackView.alpha = 0
                 self.stackView.transform = .identity

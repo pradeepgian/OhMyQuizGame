@@ -15,7 +15,7 @@ class ScoreCardViewController: UIViewController {
     
     override func viewDidLoad() {
         navigationController?.navigationBar.isHidden = true
-        scoreLabel.text = "Your score is \(score)"
+        scoreLabel.text = "Your score is \(score)%"
         view.addSubview(scoreLabel)
         scoreLabel.centerInSuperview()
     }
