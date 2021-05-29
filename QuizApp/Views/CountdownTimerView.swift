@@ -31,6 +31,7 @@ class CountdownTimerView: UIView {
             seconds = TimeInterval(timeLeft)
         }
     }
+    
     lazy private var seconds: TimeInterval = TimeInterval(timeLeft) //default value
     private var endTime: Date?
     
@@ -91,7 +92,6 @@ class CountdownTimerView: UIView {
             seconds = endTime?.timeIntervalSinceNow ?? 0
             timerLabel.text = timeString(time: TimeInterval(seconds))
             let percentage = CGFloat(seconds) / CGFloat(timeLeft)
-            print(percentage)
             shapeLayer.strokeEnd = percentage
         }
     }

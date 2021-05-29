@@ -20,17 +20,32 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         QuizAPI.shared.fetchQuestions { (questionList, error) in
             questions = questionList?.questions ?? []
             print("Question Label = \(questions[0].data.stimulus)")
+            totalMarks = questions.count > 0 ? questions[0].data.marks : 0
         }
     }
     
     fileprivate var questionIndex = 0 {
+        
         didSet {
             if questionIndex < questions.count {
-                options = questions[questionIndex].data.options
+                let question = questions[questionIndex]
+                options = question.data.options
+                totalMarks += question.data.marks
                 collectionView.reloadData()
+            } else {
+                let percent = (Float(scoredMarks) / Float(totalMarks)) * 100.0
+                let scoreCardVC = ScoreCardViewController()
+                scoreCardVC.score = percent
+                let navController = UINavigationController(rootViewController: scoreCardVC)
+                navController.modalPresentationStyle = .fullScreen
+                present(navController, animated: true, completion: nil)
             }
         }
     }
+    
+    var totalMarks: Int = 0
+    
+    var scoredMarks = 0
     
     lazy private var options = questions[questionIndex].data.options
     
@@ -60,7 +75,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     lazy var stackView = VerticalStackView(arrangedSubviews: [getReadyLabel, timerLabel], spacing: 40, alignment: .center)
     
     private var timer = Timer()
-    var seconds = 3
+    var countdownTimeInSeconds = 3
     
     var anchoredConstraintsForStackView: AnchoredConstraints?
     
@@ -112,6 +127,10 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     var startingFrame: CGRect?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let score = options[indexPath.item].score
+        scoredMarks += score
+        
         guard let cell = collectionView.cellForItem(at: indexPath) as? OptionViewCell else { return }
         
         // absolute coordindates of cell
@@ -150,7 +169,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                     self.anchoredConstraintsForStackView?.bottom?.constant = self.view.center.y + 50
                     self.view.layoutIfNeeded()
                 }) { (_) in
-                    self.seconds = 3
+                    self.countdownTimeInSeconds = 3
                     self.startGetReadyTimer()
                 }
             }
@@ -166,7 +185,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc private func updateTimer() {
-        if seconds < 1 {
+        if countdownTimeInSeconds < 1 {
             timer.invalidate()
             self.questionIndex += 1
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
@@ -177,8 +196,8 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                 self.view.setNeedsLayout()
             })
         } else {
-            seconds -= 1
-            timerLabel.text = String(Int(seconds) % 60)
+            countdownTimeInSeconds -= 1
+            timerLabel.text = String(Int(countdownTimeInSeconds) % 60)
         }
     }
     

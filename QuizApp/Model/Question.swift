@@ -19,13 +19,13 @@ struct Question: Decodable {
     let metadata: QuestionMetadata
     let stimulus: String
     let options: [Option]
+    let marks: Int
 }
 
 struct Option: Decodable {
     let label: String
     let score: Int
     let isCorrect: Int
-    
     var isCorrectBool: Bool {
         return isCorrect == 1
     }
