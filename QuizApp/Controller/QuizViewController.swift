@@ -78,6 +78,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: QuizHeaderCell.headerIdentifier, for: indexPath) as! QuizHeaderCell
         header.question = questions[questionIndex].data
+        header.timerView.startTimer()
         return header
     }
     
@@ -125,17 +126,22 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         // add optionView as a subview
         self.view.addSubview(optionView)
         
+        // Reset Timer
+        let indexHeaderForSection = NSIndexPath(row: 0, section: indexPath.section) // Get the indexPath of your header for your selected cell
+        let quizHeaderView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: indexHeaderForSection as IndexPath) as! QuizHeaderCell
+        quizHeaderView.timerView.resetTimer()
+        
         //set the option view position same as cell view's position
         self.optionViewConstraints = optionView.anchor(top: self.collectionView.topAnchor, leading: self.collectionView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: startingFrame.origin.y, left: startingFrame.origin.x, bottom: 0, right: 0), size: .init(width: startingFrame.width, height: startingFrame.height))
-        
         self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+        
+        UIView.animate(withDuration: 0.7, delay: 0.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             self.optionViewConstraints?.top?.constant = self.view.center.y - startingFrame.height/2
             self.optionViewConstraints?.leading?.constant = self.view.center.x - startingFrame.width/2
             self.optionViewConstraints?.width?.constant = startingFrame.width
             self.optionViewConstraints?.height?.constant = startingFrame.height
             self.collectionView.alpha = 0
-            self.collectionView.transform = self.collectionView.transform.translatedBy(x: 0, y: 500)
+            self.collectionView.transform = self.collectionView.transform.translatedBy(x: 0, y: 300)
             self.view.layoutIfNeeded() // starts animation
         }) { (_) in
             optionView.optionCellView.showResult {
@@ -144,6 +150,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                     self.anchoredConstraintsForStackView?.bottom?.constant = self.view.center.y + 50
                     self.view.layoutIfNeeded()
                 }) { (_) in
+                    self.seconds = 3
                     self.startGetReadyTimer()
                 }
             }
@@ -161,7 +168,6 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     @objc private func updateTimer() {
         if seconds < 1 {
             timer.invalidate()
-            timerLabel.text = "0"
             self.questionIndex += 1
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
                 self.stackView.alpha = 0

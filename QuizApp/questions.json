@@ -32,7 +32,7 @@
           ]
         },
         "solution": {},
-        "stimulus": "<p>In a democracy, why do we choose our leaders through elections?</p>",
+        "stimulus": "In a democracy, why do we choose our leaders through elections?",
         "options": [
           {
             "feedback": [
@@ -42,7 +42,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>To ensure all religions are treated the same</p>",
+            "label": "To ensure all religions are treated the same",
             "media": null,
             "value": 0,
             "isCorrect": 0
@@ -55,7 +55,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>To ensure the country does not become a monarchy</p>",
+            "label": "To ensure the country does not become a monarchy",
             "media": null,
             "value": 1,
             "isCorrect": 0
@@ -68,7 +68,7 @@
               }
             ],
             "score": 2,
-            "label": "<p>To exercise power on our behalf</p>",
+            "label": "To exercise power on our behalf",
             "media": null,
             "value": 2,
             "isCorrect": 1
@@ -81,7 +81,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>To draft the constitution of the country</p>",
+            "label": "To draft the constitution of the country",
             "media": null,
             "value": 3,
             "isCorrect": 0
@@ -145,7 +145,7 @@
           ]
         },
         "solution": {},
-        "stimulus": "<p>Before 2008, which form of government did Nepal have?&nbsp;</p>",
+        "stimulus": "Before 2008, which form of government did Nepal have?",
         "options": [
           {
             "feedback": [
@@ -155,7 +155,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>Oligarchy</p>",
+            "label": "Oligarchy",
             "media": null,
             "value": 0,
             "isCorrect": 0
@@ -168,7 +168,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>Aristocracy</p>",
+            "label": "Aristocracy",
             "media": null,
             "value": 1,
             "isCorrect": 0
@@ -181,7 +181,7 @@
               }
             ],
             "score": 0,
-            "label": "<p>Democracy</p>",
+            "label": "Democracy",
             "media": null,
             "value": 2,
             "isCorrect": 0
@@ -194,7 +194,7 @@
               }
             ],
             "score": 1,
-            "label": "<p>Monarchy&nbsp;</p>",
+            "label": "Monarchy",
             "media": null,
             "value": 3,
             "isCorrect": 1

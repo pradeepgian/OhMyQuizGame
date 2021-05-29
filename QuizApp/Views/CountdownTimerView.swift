@@ -26,12 +26,16 @@ class CountdownTimerView: UIView {
     }()
     
     private var timer = Timer()
-    var timeLeft = 60   //default value
-    lazy private var seconds: TimeInterval = TimeInterval(timeLeft)
+    var timeLeft = 60  {
+        didSet {
+            seconds = TimeInterval(timeLeft)
+        }
+    }
+    lazy private var seconds: TimeInterval = TimeInterval(timeLeft) //default value
     private var endTime: Date?
     
     init(radius: CGFloat) {
-                
+        
         super.init(frame: .zero)
         self.frame.size.height = radius * 2
         addSubview(timerLabel)
@@ -71,6 +75,10 @@ class CountdownTimerView: UIView {
                                       selector: (#selector(updateTimer)),
                                       userInfo: nil,
                                       repeats: true)
+    }
+    
+    func resetTimer() {
+        timer.invalidate()
     }
     
     @objc private func updateTimer() {

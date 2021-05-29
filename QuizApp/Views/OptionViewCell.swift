@@ -11,6 +11,23 @@ class OptionViewCell: UICollectionViewCell {
     
     static let identifier = "OptionCell_Identifier"
     
+    override var isSelected: Bool {
+        didSet {
+            var transform: CGAffineTransform = .identity
+            if isSelected {
+                transform = .init(scaleX: 0.95, y: 0.95)
+            }
+            
+            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.transform = transform
+            }) { (_) in
+                UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.transform = .identity
+                })
+            }
+        }
+    }
+    
     let optionLabel = UILabel(font: .boldSystemFont(ofSize: 16),
                                         textColor: .black,
                                         numberOfLines: 0,
@@ -45,10 +62,10 @@ class OptionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         stylizeCell()
         
-        addSubview(isCorrectImageView)
+        contentView.addSubview(isCorrectImageView)
         isCorrectImageView.fillSuperview(padding: .init(top: 5, left: 5, bottom: 5, right: 5))
 
-        addSubview(stackView)
+        contentView.addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 10, left: 5, bottom: 5, right: 5))
     }
     

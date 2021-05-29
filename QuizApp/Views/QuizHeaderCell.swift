@@ -27,7 +27,7 @@ class QuizHeaderCell: UICollectionReusableView {
                                       numberOfLines: 0,
                                       alignment: .center)
     
-    private lazy var timerView = CountdownTimerView(radius: 50)
+    let timerView = CountdownTimerView(radius: 50)
     
     private lazy var stackView = VerticalStackView(arrangedSubviews: [headerLabel, questionLabel, timerView],
                                                    spacing: 20,
