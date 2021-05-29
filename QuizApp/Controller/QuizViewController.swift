@@ -9,14 +9,14 @@ import UIKit
 
 class QuizViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var questions = [QuestionItem]()
+    private var questions = [QuestionItem]()
     
     override func viewDidLoad() {
         fetchQuestions()
         setupUI()
     }
     
-    fileprivate func fetchQuestions() {
+    private func fetchQuestions() {
         QuizAPI.shared.fetchQuestions { (questionList, error) in
             questions = questionList?.questions ?? []
             print("Question Label = \(questions[0].data.stimulus)")
@@ -24,7 +24,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    fileprivate var questionIndex = 0 {
+    private var questionIndex = 0 {
         
         didSet {
             if questionIndex < questions.count {
@@ -32,7 +32,6 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                 options = question.data.options
                 totalMarks += question.data.marks
                 self.startGetReadyTimer()
-                collectionView.reloadData()
             } else {
                 let percent = (Float(scoredMarks) / Float(totalMarks)) * 100.0
                 let scoreCardVC = ScoreCardViewController()
@@ -44,9 +43,9 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    var totalMarks: Int = 0
+    private var totalMarks: Int = 0
     
-    var scoredMarks = 0
+    private var scoredMarks = 0
     
     lazy private var options = questions[questionIndex].data.options
     
@@ -71,16 +70,16 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
 
-    let getReadyLabel = UILabel(text: "Get Ready!", font: .boldSystemFont(ofSize: 30), textColor: .white, numberOfLines: 1, alignment: .center)
-    let timerLabel = UILabel(text: "3", font: .boldSystemFont(ofSize: 100), textColor: .white, numberOfLines: 1, alignment: .center)
-    lazy var stackView = VerticalStackView(arrangedSubviews: [getReadyLabel, timerLabel], spacing: 40, alignment: .center)
+    private let getReadyLabel = UILabel(text: "Get Ready!", font: .boldSystemFont(ofSize: 30), textColor: .white, numberOfLines: 1, alignment: .center)
+    private let timerLabel = UILabel(text: "3", font: .boldSystemFont(ofSize: 100), textColor: .white, numberOfLines: 1, alignment: .center)
+    private lazy var stackView = VerticalStackView(arrangedSubviews: [getReadyLabel, timerLabel], spacing: 40, alignment: .center)
     
     private var timer = Timer()
-    var countdownTimeInSeconds = 3
+    private var countdownTimeInSeconds = 3
     
-    var anchoredConstraintsForStackView: AnchoredConstraints?
+    private var anchoredConstraintsForStackView: AnchoredConstraints?
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         view.addSubview(stackView)
         anchoredConstraintsForStackView = stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.topAnchor, trailing: view.trailingAnchor)
         stackView.alpha = 0
@@ -124,8 +123,8 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         return 30
     }
     
-    var optionViewConstraints: AnchoredConstraints?
-    var startingFrame: CGRect?
+    private var optionViewConstraints: AnchoredConstraints?
+    private var startingFrame: CGRect?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -176,7 +175,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    func startGetReadyTimer() {
+    private func startGetReadyTimer() {
         self.stackView.alpha = 1
         timer = Timer.scheduledTimer(timeInterval: 1,
                                       target: self,
@@ -188,6 +187,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     @objc private func updateTimer() {
         if countdownTimeInSeconds < 1 {
             timer.invalidate()
+            collectionView.reloadData()
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
                 self.stackView.alpha = 0
                 self.stackView.transform = .identity

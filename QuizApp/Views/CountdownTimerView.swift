@@ -16,14 +16,7 @@ class CountdownTimerView: UIView {
     private let shapeLayer = CAShapeLayer()
     weak var delegate: CountdownViewDelegate?
     
-    private let timerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "0:00"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.textColor = .white
-        return label
-    }()
+    let timerLabel = UILabel(text: "0:00", font: .boldSystemFont(ofSize: 22), textColor: .white, numberOfLines: 1, alignment: .center)
     
     private var timer = Timer()
     var timeLeft = 60  {

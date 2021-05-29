@@ -9,17 +9,15 @@ import UIKit
 
 class ScoreCardViewController: UIViewController {
     
-    fileprivate let scoreLabel = UILabel(font: .boldSystemFont(ofSize: 30), textColor: .white, numberOfLines: 0, alignment: .center)
+    private let scoreLabel = UILabel(font: .boldSystemFont(ofSize: 26), textColor: .white, numberOfLines: 0, alignment: .center)
     
     var score: Float = 0
     
     override func viewDidLoad() {
         navigationController?.navigationBar.isHidden = true
-        scoreLabel.text = "Your score is \(score)%"
+        scoreLabel.text = String(format: "Your score is %.2f percent", score)
         view.addSubview(scoreLabel)
         scoreLabel.centerInSuperview()
     }
-    
-
-    
+        
 }

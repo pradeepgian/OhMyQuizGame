@@ -82,29 +82,6 @@ extension UIView {
         }
     }
     
-    func centerXInSuperview() {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let superViewCenterXAnchor = superview?.centerXAnchor {
-            centerXAnchor.constraint(equalTo: superViewCenterXAnchor).isActive = true
-        }
-    }
-    
-    func centerYInSuperview() {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let centerY = superview?.centerYAnchor {
-            centerYAnchor.constraint(equalTo: centerY).isActive = true
-        }
-    }
-    
-    func constrainWidth(constant: CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: constant).isActive = true
-    }
-    
-    func constrainHeight(constant: CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: constant).isActive = true
-    }
 }
 
 struct AnchoredConstraints {

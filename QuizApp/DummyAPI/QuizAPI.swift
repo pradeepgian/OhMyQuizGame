@@ -18,7 +18,7 @@ class QuizAPI {
         }
     }
     
-    fileprivate func readLocalJSONFile(name: String) -> Data? {
+    private func readLocalJSONFile(name: String) -> Data? {
         do {
             if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
                 let fileUrl = URL(fileURLWithPath: filePath)
@@ -31,7 +31,7 @@ class QuizAPI {
         return nil
     }
     
-    fileprivate func fetchGenericJSONData<T: Decodable>(jsonData: Data, completion: (T?, Error?) -> ()) {
+    private func fetchGenericJSONData<T: Decodable>(jsonData: Data, completion: (T?, Error?) -> ()) {
         do {
             let objects = try JSONDecoder().decode(T.self, from: jsonData)
             // success

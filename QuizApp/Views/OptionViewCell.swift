@@ -28,7 +28,7 @@ class OptionViewCell: UICollectionViewCell {
         }
     }
     
-    let optionLabel = UILabel(font: .boldSystemFont(ofSize: 16),
+    private let optionLabel = UILabel(font: .boldSystemFont(ofSize: 16),
                                         textColor: .black,
                                         numberOfLines: 0,
                                         alignment: .center)
@@ -54,7 +54,7 @@ class OptionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var stackView = VerticalStackView.init(arrangedSubviews: [optionImageView, optionLabel],
+    private lazy var stackView = VerticalStackView.init(arrangedSubviews: [optionImageView, optionLabel],
                                                 spacing: 5,
                                                 alignment: .center)
     
@@ -69,7 +69,7 @@ class OptionViewCell: UICollectionViewCell {
         stackView.fillSuperview(padding: .init(top: 10, left: 5, bottom: 5, right: 5))
     }
     
-    fileprivate func stylizeCell() {
+    private func stylizeCell() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16.0
     }
