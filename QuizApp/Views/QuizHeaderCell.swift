@@ -13,7 +13,7 @@ class QuizHeaderCell: UICollectionReusableView {
     
     var question: Question! {
         didSet {
-            questionLabel.text = question.stimulus
+            questionLabel.text = String(htmlEncodedString: question.stimulus)
             timerView.timeLeft = question.metadata.duration
         }
     }

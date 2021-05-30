@@ -13,22 +13,19 @@ class OptionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            var transform: CGAffineTransform = .identity
             if isSelected {
-                transform = .init(scaleX: 0.95, y: 0.95)
-            }
-            
-            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.transform = transform
-            }) { (_) in
                 UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.transform = .identity
-                })
+                    self.transform = .init(scaleX: 0.95, y: 0.95)
+                }) { (_) in
+                    UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                        self.transform = .identity
+                    })
+                }
             }
         }
     }
     
-    private let optionLabel = UILabel(font: .boldSystemFont(ofSize: 16),
+    private let optionLabel = UILabel(font: .boldSystemFont(ofSize: 14),
                                         textColor: .black,
                                         numberOfLines: 0,
                                         alignment: .center)
@@ -41,7 +38,7 @@ class OptionViewCell: UICollectionViewCell {
     
     var option: Option! {
         didSet {
-            optionLabel.text = option.label
+            optionLabel.text = String(htmlEncodedString: option.label)
             isCorrectImageView.image = option.isCorrectBool ? #imageLiteral(resourceName: "Correct") : #imageLiteral(resourceName: "Incorrect")
         }
     }
@@ -72,6 +69,7 @@ class OptionViewCell: UICollectionViewCell {
     private func stylizeCell() {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16.0
+        optionLabel.sizeToFit()
     }
     
     func showResult(completion: @escaping () -> ()){

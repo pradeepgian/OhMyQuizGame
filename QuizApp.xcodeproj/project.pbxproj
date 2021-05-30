@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		80742B66265D298500209F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B65265D298500209F99 /* AppDelegate.swift */; };
 		80742B68265D298500209F99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B67265D298500209F99 /* SceneDelegate.swift */; };
-		80742B6A265D298500209F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B69265D298500209F99 /* ViewController.swift */; };
 		80742B6D265D298500209F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80742B6B265D298500209F99 /* Main.storyboard */; };
 		80742B6F265D298600209F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80742B6E265D298600209F99 /* Assets.xcassets */; };
 		80742B72265D298600209F99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80742B70265D298600209F99 /* LaunchScreen.storyboard */; };
@@ -25,13 +24,13 @@
 		80742B94265EB5BA00209F99 /* OptionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B93265EB5BA00209F99 /* OptionViewCell.swift */; };
 		80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B952661303800209F99 /* FullScreenOptionView.swift */; };
 		80742B982662743500209F99 /* ScoreCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B972662743500209F99 /* ScoreCardViewController.swift */; };
+		809A8630266373DA000368D2 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A862F266373DA000368D2 /* String+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		80742B62265D298500209F99 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80742B65265D298500209F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80742B67265D298500209F99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		80742B69265D298500209F99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80742B6C265D298500209F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80742B6E265D298600209F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80742B71265D298600209F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		80742B93265EB5BA00209F99 /* OptionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewCell.swift; sourceTree = "<group>"; };
 		80742B952661303800209F99 /* FullScreenOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenOptionView.swift; sourceTree = "<group>"; };
 		80742B972662743500209F99 /* ScoreCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewController.swift; sourceTree = "<group>"; };
+		809A862F266373DA000368D2 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,30 +80,28 @@
 		80742B64265D298500209F99 /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
-				80742B8A265E6DCD00209F99 /* Extensions */,
+				80742B79265D299B00209F99 /* Controllers */,
 				80742B87265E6BB900209F99 /* Views */,
 				80742B7B265D29DC00209F99 /* Model */,
-				80742B79265D299B00209F99 /* Controller */,
 				80742B86265E6A5E00209F99 /* DummyAPI */,
+				80742B8A265E6DCD00209F99 /* Extensions */,
+				809A86312663C1AB000368D2 /* Assets */,
 				80742B65265D298500209F99 /* AppDelegate.swift */,
 				80742B67265D298500209F99 /* SceneDelegate.swift */,
-				80742B69265D298500209F99 /* ViewController.swift */,
 				80742B6B265D298500209F99 /* Main.storyboard */,
-				80742B6E265D298600209F99 /* Assets.xcassets */,
 				80742B70265D298600209F99 /* LaunchScreen.storyboard */,
 				80742B73265D298600209F99 /* Info.plist */,
-				80742B7C265D2EE300209F99 /* questions.json */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
 		};
-		80742B79265D299B00209F99 /* Controller */ = {
+		80742B79265D299B00209F99 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				80742B7E265D57F700209F99 /* QuizViewController.swift */,
 				80742B972662743500209F99 /* ScoreCardViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		80742B7B265D29DC00209F99 /* Model */ = {
@@ -117,6 +115,7 @@
 		80742B86265E6A5E00209F99 /* DummyAPI */ = {
 			isa = PBXGroup;
 			children = (
+				80742B7C265D2EE300209F99 /* questions.json */,
 				80742B82265E038300209F99 /* QuizAPI.swift */,
 			);
 			path = DummyAPI;
@@ -139,8 +138,17 @@
 				80742B8B265E6E2F00209F99 /* UIView+AnchoredConstraints.swift */,
 				80742B8D265E6E6600209F99 /* VerticalStackView.swift */,
 				80742B8F265E6EC700209F99 /* UILabel+Style.swift */,
+				809A862F266373DA000368D2 /* String+Helpers.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		809A86312663C1AB000368D2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				80742B6E265D298600209F99 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +227,8 @@
 				80742B8E265E6E6600209F99 /* VerticalStackView.swift in Sources */,
 				80742B83265E038300209F99 /* QuizAPI.swift in Sources */,
 				80742B89265E6BFA00209F99 /* CountdownTimerView.swift in Sources */,
+				809A8630266373DA000368D2 /* String+Helpers.swift in Sources */,
 				80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */,
-				80742B6A265D298500209F99 /* ViewController.swift in Sources */,
 				80742B66265D298500209F99 /* AppDelegate.swift in Sources */,
 				80742B92265E9F7000209F99 /* QuizHeaderCell.swift in Sources */,
 				80742B90265E6EC700209F99 /* UILabel+Style.swift in Sources */,
