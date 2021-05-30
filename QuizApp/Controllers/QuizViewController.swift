@@ -93,7 +93,10 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: QuizHeaderCell.headerIdentifier, for: indexPath) as! QuizHeaderCell
         header.question = questions[questionIndex].data
-        header.timerView.startTimer()
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+            header.timerView.startTimer()
+        }
+        
         return header
     }
     
@@ -197,11 +200,13 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
                                       repeats: true)
     }
     
+    private let animationDuration = 0.7
+    
     @objc private func updateTimer() {
         if countdownTimeInSeconds < 1 {
             timer.invalidate()
             collectionView.reloadData()
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
                 self.stackView.alpha = 0
                 self.stackView.transform = .identity
                 self.collectionView.alpha = 1

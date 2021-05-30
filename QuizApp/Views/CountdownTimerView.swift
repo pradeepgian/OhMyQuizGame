@@ -22,6 +22,8 @@ class CountdownTimerView: UIView {
     var timeLeft = 60  {
         didSet {
             seconds = TimeInterval(timeLeft)
+            shapeLayer.strokeEnd = 1
+            timerLabel.text = timeString(time: seconds)
         }
     }
     
@@ -35,7 +37,7 @@ class CountdownTimerView: UIView {
         addSubview(timerLabel)
         timerLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
         timerLabel.center = center
-        timerLabel.text = timeString(time: TimeInterval(seconds))
+        timerLabel.text = timeString(time: seconds)
         
         let trackLayer = CAShapeLayer()
         
