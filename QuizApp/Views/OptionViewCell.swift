@@ -76,7 +76,25 @@ class OptionViewCell: UICollectionViewCell {
         isCorrectImageView.alpha = 1
         
         UIView.transition(from: stackView, to: isCorrectImageView, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews]) { (_) in
-            UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            let confettiEmitter = ConfettiEmitter.get(with: #imageLiteral(resourceName: "confetti"))
+            confettiEmitter.position = CGPoint(x: self.frame.size.width/2, y: 0)
+            confettiEmitter.emitterSize = .init(width: 50, height: 2)
+            self.layer.addSublayer(confettiEmitter)
+
+            confettiEmitter.beginTime = CACurrentMediaTime()
+            confettiEmitter.setValue(NSNumber(value: 1000), forKeyPath: "emitterCells.confetti.birthRate")
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                confettiEmitter.setValue(NSNumber(value: 0), forKeyPath: "emitterCells.confetti.birthRate")
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {
+                confettiEmitter.removeFromSuperlayer()
+                confettiEmitter.removeAllAnimations()
+            }
+            
+            
+            UIView.animate(withDuration: 0.5, delay: 30.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.transform = .init(scaleX: 0.01, y: 0.01)
             }) { (_) in
                 self.transform = .init(scaleX: 0, y: 0)

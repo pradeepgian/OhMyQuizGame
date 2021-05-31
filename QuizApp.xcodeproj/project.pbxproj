@@ -25,6 +25,7 @@
 		80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B952661303800209F99 /* FullScreenOptionView.swift */; };
 		80742B982662743500209F99 /* ScoreCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80742B972662743500209F99 /* ScoreCardViewController.swift */; };
 		809A8630266373DA000368D2 /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A862F266373DA000368D2 /* String+Helpers.swift */; };
+		809A86332664BD48000368D2 /* ConfettiEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809A86322664BD48000368D2 /* ConfettiEmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		80742B952661303800209F99 /* FullScreenOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenOptionView.swift; sourceTree = "<group>"; };
 		80742B972662743500209F99 /* ScoreCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewController.swift; sourceTree = "<group>"; };
 		809A862F266373DA000368D2 /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
+		809A86322664BD48000368D2 /* ConfettiEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiEmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				80742B91265E9F7000209F99 /* QuizHeaderCell.swift */,
 				80742B93265EB5BA00209F99 /* OptionViewCell.swift */,
 				80742B952661303800209F99 /* FullScreenOptionView.swift */,
+				809A86322664BD48000368D2 /* ConfettiEmitter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				80742B89265E6BFA00209F99 /* CountdownTimerView.swift in Sources */,
 				809A8630266373DA000368D2 /* String+Helpers.swift in Sources */,
 				80742B962661303800209F99 /* FullScreenOptionView.swift in Sources */,
+				809A86332664BD48000368D2 /* ConfettiEmitter.swift in Sources */,
 				80742B66265D298500209F99 /* AppDelegate.swift in Sources */,
 				80742B92265E9F7000209F99 /* QuizHeaderCell.swift in Sources */,
 				80742B90265E6EC700209F99 /* UILabel+Style.swift in Sources */,
