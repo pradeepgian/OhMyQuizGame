@@ -6,3 +6,5 @@ Feel free to improve my approach and contribute.
 
 ![](https://github.com/pradeepgian/OhMyQuizApp/blob/main/OhMyQuiz.gif)
 
+Design inspired from - 
+https://dribbble.com/shots/14012432-Quiz-App-Mobile-Design
