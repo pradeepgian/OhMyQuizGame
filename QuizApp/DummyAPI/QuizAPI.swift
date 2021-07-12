@@ -7,9 +7,21 @@
 
 import Foundation
 
+protocol QuizAPIManagerInjector {
+    var quizAPIManager: QuizAPI { get }
+}
+
+fileprivate let shared = QuizAPI()
+
+extension QuizAPIManagerInjector {
+    var quizAPIManager: QuizAPI {
+        return shared
+    }
+}
+
 class QuizAPI {
     
-    static let shared = QuizAPI() // singleton
+//    static let shared = QuizAPI() // singleton
     
     func fetchQuestions(completion: (QuestionList?, Error?) -> Void) {
         let jsonData = readLocalJSONFile(name: "questions")

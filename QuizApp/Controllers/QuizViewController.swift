@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuizViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class QuizViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, QuizAPIManagerInjector {
     
     private var questions = [QuestionItem]()
     
@@ -17,7 +17,7 @@ class QuizViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     private func fetchQuestions() {
-        QuizAPI.shared.fetchQuestions { (questionList, error) in
+        self.quizAPIManager.fetchQuestions { (questionList, error) in
             questions = questionList?.questions ?? []
             print("Question Label = \(questions[0].data.stimulus)")
             totalMarks = questions.count > 0 ? questions[0].data.marks : 0
