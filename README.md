@@ -8,3 +8,6 @@ Feel free to improve my approach and contribute.
 
 Design inspired from - 
 https://dribbble.com/shots/14012432-Quiz-App-Mobile-Design
+
+## License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
